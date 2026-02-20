@@ -24,7 +24,8 @@ spring:
     console:
       enabled: true
 
-  web:
+  spring:
+    web:
     cors:
       allowed-origins: "http://localhost:4200"
       allowed-methods: "*"
