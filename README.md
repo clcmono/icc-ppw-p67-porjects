@@ -6,6 +6,9 @@ Para ver las instrucciones completas del desarrollo de la evaluación, consulta 
 
 **[Ver especificaciones completas aquí](https://pablot18.github.io/icc-ppw-p67-porjects/)**
 
+
+Realizar FORK del proyecto Back clonar y resolver los endpoints solicitados
+Para el front crear un nuevo proyecto Angular y desarrollar las páginas solicitadas, consumiendo los endpoints del backend.
 ---
 
 ## CRITERIOS DE EVALUACIÓN
