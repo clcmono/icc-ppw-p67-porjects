@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>eva_rec_v4.md</title>
+  <meta
+    http-equiv="Content-type"
+    content="text/html;charset=UTF-8"
+  >
+
+  <style>
+    /* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+    /*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+    body {
+      font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+      font-size: var(--vscode-markdown-font-size, 14px);
+      padding: 0 26px;
+      line-height: var(--vscode-markdown-line-height, 22px);
+      word-wrap: break-word;
+    }
+
+    #code-csp-warning {
+      position: fixed;
+      top: 0;
+      right: 0;
+      color: white;
+      margin: 16px;
+      text-align: center;
+      font-size: 12px;
+      font-family: sans-serif;
+      background-color: #444444;
+      cursor: pointer;
+      padding: 6px;
+      box-shadow: 1px 1px 1px rgba(0, 0, 0, .25);
+    }
+
+    #code-csp-warning:hover {
+      text-decoration: none;
+      background-color: #007acc;
+      box-shadow: 2px 2px 2px rgba(0, 0, 0, .25);
+    }
+
+    body.scrollBeyondLastLine {
+      margin-bottom: calc(100vh - 22px);
+    }
+
+    body.showEditorSelection .code-line {
+      position: relative;
+    }
+
+    body.showEditorSelection .code-active-line:before,
+    body.showEditorSelection .code-line:hover:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: -12px;
+      height: 100%;
+    }
+
+    body.showEditorSelection li.code-active-line:before,
+    body.showEditorSelection li.code-line:hover:before {
+      left: -30px;
+    }
+
+    .vscode-light.showEditorSelection .code-active-line:before {
+      border-left: 3px solid rgba(0, 0, 0, 0.15);
+    }
+
+    .vscode-light.showEditorSelection .code-line:hover:before {
+      border-left: 3px solid rgba(0, 0, 0, 0.40);
+    }
+
+    .vscode-light.showEditorSelection .code-line .code-line:hover:before {
+      border-left: none;
+    }
+
+    .vscode-dark.showEditorSelection .code-active-line:before {
+      border-left: 3px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .vscode-dark.showEditorSelection .code-line:hover:before {
+      border-left: 3px solid rgba(255, 255, 255, 0.60);
+    }
+
+    .vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+      border-left: none;
+    }
+
+    .vscode-high-contrast.showEditorSelection .code-active-line:before {
+      border-left: 3px solid rgba(255, 160, 0, 0.7);
+    }
+
+    .vscode-high-contrast.showEditorSelection .code-line:hover:before {
+      border-left: 3px solid rgba(255, 160, 0, 1);
+    }
+
+    .vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+      border-left: none;
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    a:focus,
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: 1px solid -webkit-focus-ring-color;
+      outline-offset: -1px;
+    }
+
+    hr {
+      border: 0;
+      height: 2px;
+      border-bottom: 2px solid;
+    }
+
+    h1 {
+      padding-bottom: 0.3em;
+      line-height: 1.2;
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-weight: normal;
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+
+    table>thead>tr>th {
+      text-align: left;
+      border-bottom: 1px solid;
+    }
+
+    table>thead>tr>th,
+    table>thead>tr>td,
+    table>tbody>tr>th,
+    table>tbody>tr>td {
+      padding: 5px 10px;
+    }
+
+    table>tbody>tr+tr>td {
+      border-top: 1px solid;
+    }
+
+    blockquote {
+      margin: 0 7px 0 5px;
+      padding: 0 16px 0 10px;
+      border-left-width: 5px;
+      border-left-style: solid;
+    }
+
+    code {
+      font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+      font-size: 1em;
+      line-height: 1.357em;
+    }
+
+    body.wordWrap pre {
+      white-space: pre-wrap;
+    }
+
+    pre:not(.hljs),
+    pre.hljs code>div {
+      padding: 16px;
+      border-radius: 3px;
+      overflow: auto;
+    }
+
+    pre code {
+      color: var(--vscode-editor-foreground);
+      tab-size: 4;
+    }
+
+    /** Theming */
+
+    .vscode-light pre {
+      background-color: rgba(220, 220, 220, 0.4);
+    }
+
+    .vscode-dark pre {
+      background-color: rgba(10, 10, 10, 0.4);
+    }
+
+    .vscode-high-contrast pre {
+      background-color: rgb(0, 0, 0);
+    }
+
+    .vscode-high-contrast h1 {
+      border-color: rgb(0, 0, 0);
+    }
+
+    .vscode-light table>thead>tr>th {
+      border-color: rgba(0, 0, 0, 0.69);
+    }
+
+    .vscode-dark table>thead>tr>th {
+      border-color: rgba(255, 255, 255, 0.69);
+    }
+
+    .vscode-light h1,
+    .vscode-light hr,
+    .vscode-light table>tbody>tr+tr>td {
+      border-color: rgba(0, 0, 0, 0.18);
+    }
+
+    .vscode-dark h1,
+    .vscode-dark hr,
+    .vscode-dark table>tbody>tr+tr>td {
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+  </style>
+
+  <style>
+    /* Tomorrow Theme */
+    /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+    /* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+    /* Tomorrow Comment */
+    .hljs-comment,
+    .hljs-quote {
+      color: #8e908c;
+    }
+
+    /* Tomorrow Red */
+    .hljs-variable,
+    .hljs-template-variable,
+    .hljs-tag,
+    .hljs-name,
+    .hljs-selector-id,
+    .hljs-selector-class,
+    .hljs-regexp,
+    .hljs-deletion {
+      color: #c82829;
+    }
+
+    /* Tomorrow Orange */
+    .hljs-number,
+    .hljs-built_in,
+    .hljs-builtin-name,
+    .hljs-literal,
+    .hljs-type,
+    .hljs-params,
+    .hljs-meta,
+    .hljs-link {
+      color: #f5871f;
+    }
+
+    /* Tomorrow Yellow */
+    .hljs-attribute {
+      color: #eab700;
+    }
+
+    /* Tomorrow Green */
+    .hljs-string,
+    .hljs-symbol,
+    .hljs-bullet,
+    .hljs-addition {
+      color: #718c00;
+    }
+
+    /* Tomorrow Blue */
+    .hljs-title,
+    .hljs-section {
+      color: #4271ae;
+    }
+
+    /* Tomorrow Purple */
+    .hljs-keyword,
+    .hljs-selector-tag {
+      color: #8959a8;
+    }
+
+    .hljs {
+      display: block;
+      overflow-x: auto;
+      color: #4d4d4c;
+      padding: 0.5em;
+    }
+
+    .hljs-emphasis {
+      font-style: italic;
+    }
+
+    .hljs-strong {
+      font-weight: bold;
+    }
+  </style>
+
+  <style>
+    /*
+ * Markdown PDF CSS
+ */
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+      padding: 0 12px;
+    }
+
+    pre {
+      background-color: #f8f8f8;
+      border: 1px solid #cccccc;
+      border-radius: 3px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
+    }
+
+    pre:not(.hljs) {
+      padding: 23px;
+      line-height: 19px;
+    }
+
+    blockquote {
+      background: rgba(127, 127, 127, 0.1);
+      border-color: rgba(0, 122, 204, 0.5);
+    }
+
+    .emoji {
+      height: 1.4em;
+    }
+
+    code {
+      font-size: 14px;
+      line-height: 19px;
+    }
+
+    /* for inline code */
+    :not(pre):not(.hljs)>code {
+      color: #C9AE75;
+      /* Change the old color so it seems less like an error */
+      font-size: inherit;
+    }
+
+    /* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+    .page {
+      page-break-after: always;
+    }
+  </style>
+
+  <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+  <style>
+    body {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+  </style>
+  <script>
+    document.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+    });
+  </script>
+  <style>
+    @media print {
+      body {
+        display: none !important;
+      }
+    }
+  </style>
+  <script>
+    document.addEventListener('keydown', function (e) {
+      if (
+        e.ctrlKey &&
+        (e.key === 'p' || e.key === 's' || e.key === 'u' || e.key === 'c')
+      ) {
+        e.preventDefault();
+      }
+    });
+  </script>
+  <script>
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'F12') e.preventDefault();
+    });
+  </script>
+</head>
+
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+        ? 'dark'
+        : 'default'
+    });
+  </script>
+  <h1 id="evaluaci%C3%B3n-t%C3%A9cnica-backend--frontend-%E2%80%93-gesti%C3%B3n-de-personas-y-proyectos-de-software">
+    EVALUACIÓN TÉCNICA BACKEND + FRONTEND – GESTIÓN DE PERSONAS Y PROYECTOS DE SOFTWARE</h1>
+  <p><strong>Asignatura:</strong> Programación y Plataformas Web<br>
+    <strong>Tecnología Backend:</strong> Spring Boot | Java | Gradle (Kotlin DSL) | H2 | application.yml<br>
+    <strong>Tecnología Frontend:</strong> Angular 18+ | TypeScript | Standalone Components
+  </p>
+  <hr>
+  <h2 id="contexto">CONTEXTO</h2>
+  <p>Sistema de gestión de portafolio de desarrolladores y sus proyectos de software. La aplicación permite gestionar
+    información de personas (desarrolladores), sus enlaces de contacto (GitHub, LinkedIn, etc.) y los proyectos de
+    software que han desarrollado. El sistema incluye funcionalidades para listar, filtrar y gestionar el estado
+    activo/inactivo de las personas.</p>
+  <p><strong>Modelo de relaciones:</strong></p>
+  <ul>
+    <li>Una <strong>Person</strong> (Persona) tiene muchos <strong>ContactLink</strong> (Enlaces de contacto) →
+      OneToMany</li>
+    <li>Un <strong>ContactLink</strong> pertenece a una <strong>Person</strong> → ManyToOne</li>
+    <li>Una <strong>Person</strong> tiene muchos <strong>Project</strong> (Proyectos) → OneToMany</li>
+    <li>Un <strong>Project</strong> pertenece a una <strong>Person</strong> → ManyToOne</li>
+    <li>Un <strong>Project</strong> tiene un <strong>ProjectLink</strong> (Enlace del proyecto) → OneToOne</li>
+    <li>Un <strong>ProjectLink</strong> pertenece a un <strong>Project</strong> → OneToOne</li>
+  </ul>
+  <hr>
+  <h2 id="parte-1-backend-%E2%80%93-spring-boot">PARTE 1: BACKEND – SPRING BOOT</h2>
+  <h3 id="11-configuraci%C3%B3n-de-base-de-datos">1.1 Configuración de Base de Datos</h3>
+  <h4 id="111-dependencias-buildgradlekts">1.1.1 Dependencias (build.gradle.kts)</h4>
+  <pre class="hljs"><code><div>dependencies {
+    implementation(<span class="hljs-string">"org.springframework.boot:spring-boot-starter-web"</span>)
+    implementation(<span class="hljs-string">"org.springframework.boot:spring-boot-starter-data-jpa"</span>)
+    implementation(<span class="hljs-string">"org.springframework.boot:spring-boot-starter-validation"</span>)
+    
+    runtimeOnly(<span class="hljs-string">"com.h2database:h2"</span>)
+    
+    developmentOnly(<span class="hljs-string">"org.springframework.boot:spring-boot-devtools"</span>)
+    testImplementation(<span class="hljs-string">"org.springframework.boot:spring-boot-starter-test"</span>)
+}
+</div></code></pre>
+  <h4 id="112-configuraci%C3%B3n-applicationyml">1.1.2 Configuración (application.yml)</h4>
+  <pre class="hljs"><code><div><span class="hljs-attr">spring:</span>
+  <span class="hljs-attr">datasource:</span>
+    <span class="hljs-attr">url:</span> <span class="hljs-string">jdbc:h2:mem:portfoliodb</span>
+    <span class="hljs-attr">driver-class-name:</span> <span class="hljs-string">org.h2.Driver</span>
+    <span class="hljs-attr">username:</span> <span class="hljs-string">sa</span>
+    <span class="hljs-attr">password:</span>
+
+  <span class="hljs-attr">jpa:</span>
+    <span class="hljs-attr">database-platform:</span> <span class="hljs-string">org.hibernate.dialect.H2Dialect</span>
+    <span class="hljs-attr">hibernate:</span>
+      <span class="hljs-attr">ddl-auto:</span> <span class="hljs-string">none</span>
+    <span class="hljs-attr">show-sql:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">properties:</span>
+      <span class="hljs-attr">hibernate:</span>
+        <span class="hljs-attr">format_sql:</span> <span class="hljs-literal">true</span>
+
+  <span class="hljs-attr">sql:</span>
+    <span class="hljs-attr">init:</span>
+      <span class="hljs-attr">mode:</span> <span class="hljs-string">always</span>
+      <span class="hljs-attr">schema-locations:</span> <span class="hljs-string">classpath:schema.sql</span>
+      <span class="hljs-attr">data-locations:</span> <span class="hljs-string">classpath:data.sql</span>
+
+<span class="hljs-attr">server:</span>
+  <span class="hljs-attr">port:</span> <span class="hljs-number">8080</span>
+
+<span class="hljs-comment"># CORS para permitir peticiones desde Angular (puerto 4200)</span>
+<span class="hljs-attr">spring:</span>
+  <span class="hljs-attr">web:</span>
+    <span class="hljs-attr">cors:</span>
+      <span class="hljs-attr">allowed-origins:</span> <span class="hljs-string">"http://localhost:4200"</span>
+      <span class="hljs-attr">allowed-methods:</span> <span class="hljs-string">"*"</span>
+      <span class="hljs-attr">allowed-headers:</span> <span class="hljs-string">"*"</span>
+</div></code></pre>
+  <h4 id="113-archivos-sql">1.1.3 Archivos SQL</h4>
+  <p><strong>Ubicación obligatoria:</strong></p>
+  <ul>
+    <li><code>src/main/resources/schema.sql</code></li>
+    <li><code>src/main/resources/data.sql</code></li>
+  </ul>
+  <p><strong>Tabla: persons</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Campo</th>
+        <th>Tipo</th>
+        <th>Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>BIGINT</td>
+        <td>Identificador único (PK)</td>
+      </tr>
+      <tr>
+        <td>first_name</td>
+        <td>VARCHAR(50)</td>
+        <td>Nombre de la persona</td>
+      </tr>
+      <tr>
+        <td>last_name</td>
+        <td>VARCHAR(50)</td>
+        <td>Apellido de la persona</td>
+      </tr>
+      <tr>
+        <td>email</td>
+        <td>VARCHAR(100)</td>
+        <td>Correo electrónico</td>
+      </tr>
+      <tr>
+        <td>bio</td>
+        <td>TEXT</td>
+        <td>Biografía/descripción</td>
+      </tr>
+      <tr>
+        <td>profession</td>
+        <td>VARCHAR(100)</td>
+        <td>Profesión (ej: Full-Stack Developer)</td>
+      </tr>
+      <tr>
+        <td>location</td>
+        <td>VARCHAR(100)</td>
+        <td>Ubicación geográfica</td>
+      </tr>
+      <tr>
+        <td>active</td>
+        <td>CHAR(1)</td>
+        <td>Estado: &quot;S&quot; = activo, &quot;N&quot; = inactivo</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Tabla: contact_links</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Campo</th>
+        <th>Tipo</th>
+        <th>Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>BIGINT</td>
+        <td>Identificador único (PK)</td>
+      </tr>
+      <tr>
+        <td>name</td>
+        <td>VARCHAR(50)</td>
+        <td>Nombre del enlace (GitHub, LinkedIn, etc.)</td>
+      </tr>
+      <tr>
+        <td>url</td>
+        <td>VARCHAR(255)</td>
+        <td>URL del enlace</td>
+      </tr>
+      <tr>
+        <td>person_id</td>
+        <td>BIGINT</td>
+        <td>FK a persons (ManyToOne)</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Tabla: projects</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Campo</th>
+        <th>Tipo</th>
+        <th>Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>BIGINT</td>
+        <td>Identificador único (PK)</td>
+      </tr>
+      <tr>
+        <td>name</td>
+        <td>VARCHAR(100)</td>
+        <td>Nombre del proyecto</td>
+      </tr>
+      <tr>
+        <td>description</td>
+        <td>TEXT</td>
+        <td>Descripción del proyecto</td>
+      </tr>
+      <tr>
+        <td>technologies</td>
+        <td>TEXT</td>
+        <td>Lista de tecnologías separadas por comas</td>
+      </tr>
+      <tr>
+        <td>status</td>
+        <td>VARCHAR(50)</td>
+        <td>Estado: &quot;Completed&quot;, &quot;In Progress&quot;, &quot;Planned&quot;</td>
+      </tr>
+      <tr>
+        <td>cost</td>
+        <td>DECIMAL</td>
+        <td>Costo del proyecto</td>
+      </tr>
+      <tr>
+        <td>start_date</td>
+        <td>DATE</td>
+        <td>Fecha de inicio</td>
+      </tr>
+      <tr>
+        <td>end_date</td>
+        <td>DATE</td>
+        <td>Fecha de finalización (puede ser NULL)</td>
+      </tr>
+      <tr>
+        <td>person_id</td>
+        <td>BIGINT</td>
+        <td>FK a persons (ManyToOne)</td>
+      </tr>
+      <tr>
+        <td>active</td>
+        <td>CHAR(1)</td>
+        <td>Estado: &quot;S&quot; = activo, &quot;N&quot; = inactivo</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Tabla: project_links</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Campo</th>
+        <th>Tipo</th>
+        <th>Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>id</td>
+        <td>BIGINT</td>
+        <td>Identificador único (PK)</td>
+      </tr>
+      <tr>
+        <td>name</td>
+        <td>VARCHAR(50)</td>
+        <td>Nombre del enlace (Repository, Demo, Docs)</td>
+      </tr>
+      <tr>
+        <td>url</td>
+        <td>VARCHAR(255)</td>
+        <td>URL del enlace</td>
+      </tr>
+      <tr>
+        <td>project_id</td>
+        <td>BIGINT</td>
+        <td>FK a projects (OneToOne)</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Relaciones:</strong></p>
+  <pre class="hljs"><code><div><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> contact_links <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (person_id) <span class="hljs-keyword">REFERENCES</span> persons(<span class="hljs-keyword">id</span>);
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> projects <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (person_id) <span class="hljs-keyword">REFERENCES</span> persons(<span class="hljs-keyword">id</span>);
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> project_links <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (project_id) <span class="hljs-keyword">REFERENCES</span> projects(<span class="hljs-keyword">id</span>);
+</div></code></pre>
+  <p><strong>Eliminación lógica:</strong> Campo <code>active</code> (&quot;S&quot; = activo, &quot;N&quot; = eliminado)
+    en persons y projects</p>
+  <hr>
+  <h3 id="12-endpoints-backend">1.2 Endpoints Backend</h3>
+  <h4 id="endpoint-1-listar-todas-las-personas">ENDPOINT 1: Listar todas las personas</h4>
+  <p><strong>Ruta:</strong> <code>GET /api/persons</code></p>
+  <p><strong>Query Parameter:</strong></p>
+  <ul>
+    <li><code>activeOnly</code> (Boolean, opcional) - Si es <code>true</code>, solo devuelve personas activas. Default:
+      <code>false</code>
+    </li>
+  </ul>
+  <p><strong>DTO Response:</strong> Lista de <code>PersonSummaryDto</code></p>
+  <pre class="hljs"><code><div>[
+  {
+    <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"Juan"</span>,
+    <span class="hljs-attr">"lastName"</span>: <span class="hljs-string">"Pérez"</span>,
+    <span class="hljs-attr">"profession"</span>: <span class="hljs-string">"Full-Stack Developer"</span>,
+    <span class="hljs-attr">"location"</span>: <span class="hljs-string">"Quito, Ecuador"</span>,
+    <span class="hljs-attr">"active"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"contactLinks"</span>: [
+      {
+        <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"GitHub"</span>,
+        <span class="hljs-attr">"url"</span>: <span class="hljs-string">"https://github.com/juanperez"</span>
+      },
+      {
+        <span class="hljs-attr">"id"</span>: <span class="hljs-number">2</span>,
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"LinkedIn"</span>,
+        <span class="hljs-attr">"url"</span>: <span class="hljs-string">"https://linkedin.com/in/juanperez"</span>
+      }
+    ],
+    <span class="hljs-attr">"projectCount"</span>: <span class="hljs-number">8</span>
+  },
+  {
+    <span class="hljs-attr">"id"</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"María"</span>,
+    <span class="hljs-attr">"lastName"</span>: <span class="hljs-string">"González"</span>,
+    <span class="hljs-attr">"profession"</span>: <span class="hljs-string">"Backend Developer"</span>,
+    <span class="hljs-attr">"location"</span>: <span class="hljs-string">"Guayaquil, Ecuador"</span>,
+    <span class="hljs-attr">"active"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"contactLinks"</span>: [
+      {
+        <span class="hljs-attr">"id"</span>: <span class="hljs-number">5</span>,
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"GitHub"</span>,
+        <span class="hljs-attr">"url"</span>: <span class="hljs-string">"https://github.com/mariagonzalez"</span>
+      }
+    ],
+    <span class="hljs-attr">"projectCount"</span>: <span class="hljs-number">0</span>
+  }
+]
+</div></code></pre>
+  <p><strong>Reglas:</strong></p>
+  <ul>
+    <li>Si <code>activeOnly=true</code>: solo personas con <code>active = &quot;S&quot;</code></li>
+    <li>Si <code>activeOnly=false</code> o no especificado: todas las personas</li>
+    <li><code>projectCount</code>: número de proyectos activos de la persona</li>
+    <li>Incluir todos los <code>contactLinks</code> de cada persona</li>
+  </ul>
+  <p><strong>Códigos HTTP:</strong></p>
+  <ul>
+    <li><code>200 OK</code> – Siempre (incluso si lista vacía <code>[]</code>)</li>
+  </ul>
+  <hr>
+  <h4 id="endpoint-2-activardesactivar-persona">ENDPOINT 2: Activar/Desactivar persona</h4>
+  <p><strong>Ruta:</strong> <code>PATCH /api/persons/{id}/toggle-active</code></p>
+  <p><strong>Path Variable:</strong></p>
+  <ul>
+    <li><code>id</code> (Long) - ID de la persona</li>
+  </ul>
+  <p><strong>Response Body:</strong> <code>PersonStatusDto</code></p>
+  <pre class="hljs"><code><div>{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"Juan"</span>,
+  <span class="hljs-attr">"lastName"</span>: <span class="hljs-string">"Pérez"</span>,
+  <span class="hljs-attr">"active"</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Person deactivated successfully"</span>
+}
+</div></code></pre>
+  <p><strong>Reglas:</strong></p>
+  <ul>
+    <li>Si la persona está activa (<code>active = &quot;S&quot;</code>), cambiarla a inactiva
+      (<code>active = &quot;N&quot;</code>)</li>
+    <li>Si la persona está inactiva, cambiarla a activa</li>
+    <li>El mensaje debe indicar el nuevo estado: &quot;Person activated successfully&quot; o &quot;Person deactivated
+      successfully&quot;</li>
+  </ul>
+  <p><strong>Códigos HTTP:</strong></p>
+  <ul>
+    <li><code>200 OK</code> – Cambio exitoso</li>
+    <li><code>404 NOT FOUND</code> – Persona no existe</li>
+  </ul>
+  <p><strong>Mensaje de error:</strong></p>
+  <pre class="hljs"><code><div>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Person not found"</span>
+}
+</div></code></pre>
+  <hr>
+  <h4 id="endpoint-3-obtener-informaci%C3%B3n-de-una-persona">ENDPOINT 3: Obtener información de una persona</h4>
+  <p><strong>Ruta:</strong> <code>GET /api/persons/{id}</code></p>
+  <p><strong>Path Variable:</strong></p>
+  <ul>
+    <li><code>id</code> (Long) - ID de la persona</li>
+  </ul>
+  <p><strong>DTO Response:</strong> <code>PersonDetailDto</code></p>
+  <pre class="hljs"><code><div>{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"Juan"</span>,
+  <span class="hljs-attr">"lastName"</span>: <span class="hljs-string">"Pérez"</span>,
+  <span class="hljs-attr">"email"</span>: <span class="hljs-string">"juan.perez@example.com"</span>,
+  <span class="hljs-attr">"bio"</span>: <span class="hljs-string">"Desarrollador full-stack con 5 años de experiencia..."</span>,
+  <span class="hljs-attr">"profession"</span>: <span class="hljs-string">"Full-Stack Developer"</span>,
+  <span class="hljs-attr">"location"</span>: <span class="hljs-string">"Quito, Ecuador"</span>,
+  <span class="hljs-attr">"active"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"contactLinks"</span>: [
+    {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"GitHub"</span>,
+      <span class="hljs-attr">"url"</span>: <span class="hljs-string">"https://github.com/juanperez"</span>
+    },
+    {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-number">2</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"LinkedIn"</span>,
+      <span class="hljs-attr">"url"</span>: <span class="hljs-string">"https://linkedin.com/in/juanperez"</span>
+    },
+    {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-number">3</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Portfolio"</span>,
+      <span class="hljs-attr">"url"</span>: <span class="hljs-string">"https://juanperez.dev"</span>
+    }
+  ],
+  <span class="hljs-attr">"projectCount"</span>: <span class="hljs-number">8</span>
+}
+</div></code></pre>
+  <p><strong>Reglas:</strong></p>
+  <ul>
+    <li>Devolver información completa de la persona (activa o inactiva)</li>
+    <li>Incluir todos los enlaces de contacto</li>
+    <li><code>projectCount</code>: número de proyectos activos</li>
+  </ul>
+  <p><strong>Códigos HTTP:</strong></p>
+  <ul>
+    <li><code>200 OK</code> – Persona existe</li>
+    <li><code>404 NOT FOUND</code> – Persona no existe</li>
+  </ul>
+  <p><strong>Mensaje de error:</strong></p>
+  <pre class="hljs"><code><div>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Person not found"</span>
+}
+</div></code></pre>
+  <hr>
+  <h4 id="endpoint-4-obtener-proyectos-de-una-persona-con-filtro-por-costo">ENDPOINT 4: Obtener proyectos de una persona
+    con filtro por costo</h4>
+  <p><strong>Ruta:</strong> <code>GET /api/persons/{id}/projects</code></p>
+  <p><strong>Path Variable:</strong></p>
+  <ul>
+    <li><code>id</code> (Long) - ID de la persona</li>
+  </ul>
+  <p><strong>Query Parameter:</strong></p>
+  <ul>
+    <li><code>minCost</code> (Double, opcional) - Costo mínimo para filtrar proyectos. Si no se especifica, devuelve
+      todos los proyectos</li>
+  </ul>
+  <p><strong>DTO Response:</strong> <code>PersonProjectsDto</code></p>
+  <pre class="hljs"><code><div>{
+  <span class="hljs-attr">"personId"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">"personName"</span>: <span class="hljs-string">"Juan Pérez"</span>,
+  <span class="hljs-attr">"active"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"filterApplied"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"minCost"</span>: <span class="hljs-number">5000.00</span>,
+  <span class="hljs-attr">"projectCount"</span>: <span class="hljs-number">3</span>,
+  <span class="hljs-attr">"projects"</span>: [
+    {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"E-Commerce Platform"</span>,
+      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"Plataforma de comercio electrónico completa..."</span>,
+      <span class="hljs-attr">"technologies"</span>: <span class="hljs-string">"Spring Boot, Angular, PostgreSQL, AWS"</span>,
+      <span class="hljs-attr">"status"</span>: <span class="hljs-string">"Completed"</span>,
+      <span class="hljs-attr">"cost"</span>: <span class="hljs-number">15000.00</span>,
+      <span class="hljs-attr">"startDate"</span>: <span class="hljs-string">"2023-01-15"</span>,
+      <span class="hljs-attr">"endDate"</span>: <span class="hljs-string">"2023-06-30"</span>,
+      <span class="hljs-attr">"projectLink"</span>: {
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Repository"</span>,
+        <span class="hljs-attr">"url"</span>: <span class="hljs-string">"https://github.com/juanperez/ecommerce"</span>
+      }
+    },
+    {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-number">3</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Mobile Banking App"</span>,
+      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"Aplicación móvil para gestión bancaria..."</span>,
+      <span class="hljs-attr">"technologies"</span>: <span class="hljs-string">"React Native, Node.js, MongoDB"</span>,
+      <span class="hljs-attr">"status"</span>: <span class="hljs-string">"In Progress"</span>,
+      <span class="hljs-attr">"cost"</span>: <span class="hljs-number">12000.00</span>,
+      <span class="hljs-attr">"startDate"</span>: <span class="hljs-string">"2023-09-01"</span>,
+      <span class="hljs-attr">"endDate"</span>: <span class="hljs-literal">null</span>,
+      <span class="hljs-attr">"projectLink"</span>: {
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Demo"</span>,
+        <span class="hljs-attr">"url"</span>: <span class="hljs-string">"https://demo.banking.com"</span>
+      }
+    }
+  ]
+}
+</div></code></pre>
+  <p><strong>Reglas:</strong></p>
+  <ul>
+    <li>La persona debe existir (activa o inactiva)</li>
+    <li>Solo devolver proyectos con <code>active = &quot;S&quot;</code></li>
+    <li>Si <code>minCost</code> está especificado: filtrar proyectos con <code>cost &gt;= minCost</code></li>
+    <li>Si <code>minCost</code> no está especificado: devolver todos los proyectos activos</li>
+    <li><code>filterApplied</code>: <code>true</code> si se aplicó filtro de costo, <code>false</code> si no</li>
+    <li>Ordenar proyectos por costo descendente</li>
+    <li>Si la persona no tiene proyectos (o ninguno cumple el filtro): <code>projects: []</code>,
+      <code>projectCount: 0</code>
+    </li>
+  </ul>
+  <p><strong>Códigos HTTP:</strong></p>
+  <ul>
+    <li><code>200 OK</code> – Persona existe (incluso si no tiene proyectos)</li>
+    <li><code>404 NOT FOUND</code> – Persona no existe</li>
+  </ul>
+  <p><strong>Mensaje de error:</strong></p>
+  <pre class="hljs"><code><div>{
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Person not found"</span>
+}
+</div></code></pre>
+  <p><strong>Caso especial - Persona sin proyectos:</strong></p>
+  <pre class="hljs"><code><div>{
+  <span class="hljs-attr">"personId"</span>: <span class="hljs-number">2</span>,
+  <span class="hljs-attr">"personName"</span>: <span class="hljs-string">"María González"</span>,
+  <span class="hljs-attr">"active"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"filterApplied"</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">"minCost"</span>: <span class="hljs-literal">null</span>,
+  <span class="hljs-attr">"projectCount"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"projects"</span>: []
+}
+</div></code></pre>
+  <hr>
+  <h3 id="13-modelo-de-entidades">1.3 Modelo de Entidades</h3>
+  <h4 id="person-entity">Person Entity</h4>
+  <pre class="hljs"><code><div><span class="hljs-meta">@Entity</span>
+<span class="hljs-meta">@Table</span>(name = <span class="hljs-string">"persons"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>{
+    <span class="hljs-comment">// Agregar annotations e imports necesarios</span>
+    <span class="hljs-keyword">private</span> Long id;
+    <span class="hljs-keyword">private</span> String firstName;
+    <span class="hljs-keyword">private</span> String lastName;
+    <span class="hljs-keyword">private</span> String email;
+    <span class="hljs-keyword">private</span> String bio;
+    <span class="hljs-keyword">private</span> String profession;
+    <span class="hljs-keyword">private</span> String location;
+    <span class="hljs-keyword">private</span> Character active;
+    <span class="hljs-keyword">private</span> List&lt;ContactLink&gt; contactLinks;
+    <span class="hljs-keyword">private</span> List&lt;Project&gt; projects;
+    
+    <span class="hljs-comment">// Getters, setters, constructors</span>
+}
+</div></code></pre>
+  <h4 id="contactlink-entity">ContactLink Entity</h4>
+  <pre class="hljs"><code><div><span class="hljs-meta">@Entity</span>
+<span class="hljs-meta">@Table</span>(name = <span class="hljs-string">"contact_links"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ContactLink</span> </span>{
+    <span class="hljs-comment">// Agregar annotations e imports necesarios</span>
+    <span class="hljs-keyword">private</span> Long id;
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> String url;
+    <span class="hljs-keyword">private</span> Person person;
+    
+    <span class="hljs-comment">// Getters, setters, constructors</span>
+}
+</div></code></pre>
+  <h4 id="project-entity">Project Entity</h4>
+  <pre class="hljs"><code><div><span class="hljs-meta">@Entity</span>
+<span class="hljs-meta">@Table</span>(name = <span class="hljs-string">"projects"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Project</span> </span>{
+    <span class="hljs-comment">// Agregar annotations e imports necesarios</span>
+    <span class="hljs-keyword">private</span> Long id;
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> String description;
+    <span class="hljs-keyword">private</span> String technologies;
+    <span class="hljs-keyword">private</span> String status;
+    <span class="hljs-keyword">private</span> Double cost;
+    <span class="hljs-keyword">private</span> LocalDate startDate;
+    <span class="hljs-keyword">private</span> LocalDate endDate;
+    <span class="hljs-keyword">private</span> Character active;
+    <span class="hljs-keyword">private</span> Person person;
+    <span class="hljs-keyword">private</span> ProjectLink projectLink;
+    
+    <span class="hljs-comment">// Getters, setters, constructors</span>
+}
+</div></code></pre>
+  <h4 id="projectlink-entity">ProjectLink Entity</h4>
+  <pre class="hljs"><code><div><span class="hljs-meta">@Entity</span>
+<span class="hljs-meta">@Table</span>(name = <span class="hljs-string">"project_links"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProjectLink</span> </span>{
+    <span class="hljs-comment">// Agregar annotations e imports necesarios</span>
+    <span class="hljs-keyword">private</span> Long id;
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> String url;
+    <span class="hljs-keyword">private</span> Project project;
+    
+    <span class="hljs-comment">// Getters, setters, constructors</span>
+}
+</div></code></pre>
+  <hr>
+  <h3 id="14-estructura-del-proyecto-backend">1.4 Estructura del Proyecto Backend</h3>
+  <p>Cada módulo con sus paquetes correspondientes:</p>
+  <ul>
+    <li>Módulo Person
+      <ul>
+        <li>controller</li>
+        <li>service</li>
+        <li>repository</li>
+        <li>dto</li>
+        <li>entity</li>
+        <li>mapper</li>
+      </ul>
+    </li>
+    <li>Módulo ContactLink (si se considera necesario como módulo separado)</li>
+    <li>Módulo Project
+      <ul>
+        <li>controller</li>
+        <li>service</li>
+        <li>repository</li>
+        <li>dto</li>
+        <li>entity</li>
+        <li>mapper</li>
+      </ul>
+    </li>
+    <li>Módulo ProjectLink (si se considera necesario como módulo separado)</li>
+  </ul>
+  <p>La estructura debe seguir buenas prácticas de arquitectura en capas.</p>
+  <hr>
+  <h2 id="parte-2-frontend-%E2%80%93-angular">PARTE 2: FRONTEND – ANGULAR</h2>
+  <p>VERSION DE ANGULAR: 19+
+    USO DE SEÑALES</p>
+  <h3 id="21-configuraci%C3%B3n-del-proyecto-angular">2.1 Configuración del Proyecto Angular</h3>
+  <p><strong>Versión:</strong> Angular 18+<br>
+    <strong>Arquitectura:</strong> Standalone Components<br>
+    <strong>Estilo:</strong> CSS/SCSS a elección
+  </p>
+  <p><strong>Instalación:</strong></p>
+  <pre class="hljs"><code><div>ng new portfolio-frontend --standalone --routing
+<span class="hljs-built_in">cd</span> portfolio-frontend
+ng serve
+</div></code></pre>
+  <h3 id="22-estructura-de-rutas">2.2 Estructura de Rutas</h3>
+  <pre class="hljs"><code><div><span class="hljs-comment">// app.routes.ts</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> routes: Routes = [
+  { path: <span class="hljs-string">''</span>, redirectTo: <span class="hljs-string">'/home'</span>, pathMatch: <span class="hljs-string">'full'</span> },
+  { path: <span class="hljs-string">'home'</span>, component: HomeComponent },
+  { path: <span class="hljs-string">'proyectos/:id'</span>, component: ProjectsComponent },
+  { path: <span class="hljs-string">'proyectos'</span>, redirectTo: <span class="hljs-string">'/home'</span>, pathMatch: <span class="hljs-string">'full'</span> },
+  { path: <span class="hljs-string">'**'</span>, redirectTo: <span class="hljs-string">'/home'</span> }
+];
+</div></code></pre>
+  <p><strong>Rutas:</strong></p>
+  <ul>
+    <li><code>/</code> → Redirige a <code>/home</code></li>
+    <li><code>/home</code> → Página principal con listado de personas</li>
+    <li><code>/proyectos/:id</code> → Página de proyectos de una persona específica</li>
+    <li><code>/proyectos</code> (sin ID) → Redirige a <code>/home</code></li>
+    <li>Cualquier ruta no encontrada → Redirige a <code>/home</code></li>
+  </ul>
+  <hr>
+  <h3 id="23-p%C3%A1gina-1-home-home">2.3 Página 1: Home (/home)</h3>
+  <p><strong>Componente:</strong> <code>HomeComponent</code></p>
+  <p><strong>Funcionalidad:</strong></p>
+  <ol>
+    <li>
+      <p><strong>Listado de personas:</strong></p>
+      <ul>
+        <li>Mostrar todas las personas en formato de tarjetas (cards)</li>
+        <li>SI LA PERSONA ESTÁ INACTIVA, SU CARD DEBE TENER UN ESTILO DIFERENTE (ej: opacidad reducida, badge
+          &quot;Inactivo&quot;, etc.)</li>
+        <li>Cada card debe mostrar:
+          <ul>
+            <li>Nombre completo</li>
+            <li>Profesión</li>
+            <li>Ubicación</li>
+            <li>Estado (activo/inactivo) - indicador visual (badge, color, etc.)</li>
+            <li>Enlaces de contacto con íconos</li>
+            <li>Número de proyectos</li>
+            <li>Botón &quot;Ver Proyectos&quot;</li>
+            <li>Botón &quot;Activar/Desactivar&quot;</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p><strong>Filtro de personas activas:</strong></p>
+      <ul>
+        <li>Toggle/Switch o botón para alternar entre:
+          <ul>
+            <li>&quot;Mostrar todas las personas&quot;</li>
+            <li>&quot;Mostrar solo personas activas&quot;</li>
+          </ul>
+        </li>
+        <li>Al cambiar el filtro, debe hacer una nueva petición al backend</li>
+      </ul>
+    </li>
+    <li>
+      <p><strong>Íconos de redes sociales:</strong></p>
+      <ul>
+        <li>GitHub → Logo de GitHub (puedes usar Font Awesome o similar)</li>
+        <li>LinkedIn → Logo de LinkedIn</li>
+        <li>Portfolio, Website, etc. → Ícono genérico de enlace</li>
+      </ul>
+    </li>
+    <li>
+      <p><strong>Botón Activar/Desactivar:</strong></p>
+      <ul>
+        <li>Al hacer clic, debe llamar al endpoint <code>PATCH /api/persons/{id}/toggle-active</code></li>
+        <li>Actualizar el listado después del cambio</li>
+        <li>Mostrar mensaje de confirmación (opcional: usar toast o snackbar)</li>
+      </ul>
+    </li>
+    <li>
+      <p><strong>Botón Ver Proyectos:</strong></p>
+      <ul>
+        <li>Al hacer clic, navegar a <code>/proyectos/{id}</code></li>
+      </ul>
+    </li>
+  </ol>
+  <p><strong>Diseño sugerido:</strong></p>
+  <ul>
+    <li>Grid responsivo de cards (2-3 columnas en desktop, 1 en móvil)</li>
+    <li>Cards con sombra y hover effect</li>
+    <li>Enlaces de contacto como íconos clicables</li>
+    <li>Badge o color distintivo para estado activo/inactivo</li>
+  </ul>
+  <p><strong>Endpoint utilizado:</strong></p>
+  <ul>
+    <li><code>GET /api/persons?activeOnly={true|false}</code></li>
+    <li><code>PATCH /api/persons/{id}/toggle-active</code></li>
+  </ul>
+  <hr>
+  <h3 id="24-p%C3%A1gina-2-proyectos-de-una-persona-proyectosid">2.4 Página 2: Proyectos de una Persona (/proyectos/:id)
+  </h3>
+  <p><strong>Componente:</strong> <code>ProjectsComponent</code></p>
+  <p><strong>Funcionalidad:</strong></p>
+  <ol>
+    <li>
+      <p><strong>Encabezado con información de la persona:</strong></p>
+      <ul>
+        <li>Mostrar los datos de la persona seleccionada:
+          <ul>
+            <li>Nombre completo</li>
+            <li>Profesión</li>
+            <li>Biografía</li>
+            <li>Enlaces de contacto</li>
+          </ul>
+        </li>
+        <li>Puede reutilizar un componente común con Home</li>
+      </ul>
+    </li>
+    <li>
+      <p><strong>Filtro de proyectos por costo:</strong></p>
+      <ul>
+        <li>Input field para ingresar el costo mínimo</li>
+        <li>Botón &quot;Filtrar&quot; o filtrado automático (onChange)</li>
+        <li>Mostrar etiqueta indicando que hay un filtro aplicado (ej: &quot;Mostrando proyectos con costo mayor a
+          $5000&quot;)</li>
+        <li>Botón para limpiar filtro y ver todos los proyectos</li>
+      </ul>
+    </li>
+    <li>
+      <p><strong>Listado de proyectos:</strong></p>
+      <ul>
+        <li>Mostrar todos los proyectos de la persona al cargar (sin filtro)</li>
+        <li>Al aplicar filtro, mostrar solo proyectos con costo &gt;= valor ingresado</li>
+        <li>Cada proyecto debe mostrar:
+          <ul>
+            <li>Nombre del proyecto</li>
+            <li>Descripción</li>
+            <li>Tecnologías (puede ser como tags/chips)</li>
+            <li>Estado (badge con color según estado)</li>
+            <li>Costo (formato moneda)</li>
+            <li>Fechas (inicio y fin)</li>
+            <li>Enlace del proyecto (ícono/botón clicable)</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p><strong>Manejo de casos especiales:</strong></p>
+      <ul>
+        <li><strong>Persona sin proyectos:</strong> Mostrar mensaje &quot;Esta persona no tiene proyectos
+          registrados&quot;</li>
+        <li><strong>Filtro sin resultados:</strong> Mostrar mensaje &quot;No se encontraron proyectos con costo mayor a
+          ${valor}&quot;</li>
+        <li><strong>Persona inexistente (ID inválido):</strong> Mostrar mensaje de error &quot;La persona no
+          existe&quot; y botón para volver a Home</li>
+      </ul>
+    </li>
+    <li>
+      <p><strong>Navegación:</strong></p>
+      <ul>
+        <li>Botón &quot;Volver al Home&quot; o &quot;← Atrás&quot;</li>
+      </ul>
+    </li>
+  </ol>
+  <p><strong>Diseño sugerido:</strong></p>
+  <ul>
+    <li>Sección superior con datos de la persona (puede ser un card horizontal)</li>
+    <li>Barra de filtro con campo de texto y botón</li>
+    <li>Lista o grid de proyectos</li>
+    <li>Cards de proyecto con diseño estructurado</li>
+  </ul>
+  <p><strong>Endpoints utilizados:</strong></p>
+  <ul>
+    <li><code>GET /api/persons/{id}</code> - Para obtener información de la persona</li>
+    <li><code>GET /api/persons/{id}/projects?minCost={valor}</code> - Para obtener proyectos</li>
+  </ul>
+  <hr>
+  <h3 id="26-interfaces-typescript">2.6 Interfaces TypeScript</h3>
+  <p><strong>Crear interfaces que coincidan con los DTOs del backend:</strong></p>
+  <pre class="hljs"><code><div><span class="hljs-comment">// person.models.ts</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> PersonSummary {
+  id: <span class="hljs-built_in">number</span>;
+  firstName: <span class="hljs-built_in">string</span>;
+  lastName: <span class="hljs-built_in">string</span>;
+  profession: <span class="hljs-built_in">string</span>;
+  location: <span class="hljs-built_in">string</span>;
+  active: <span class="hljs-built_in">boolean</span>;
+  contactLinks: ContactLink[];
+  projectCount: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> PersonDetail {
+  id: <span class="hljs-built_in">number</span>;
+  firstName: <span class="hljs-built_in">string</span>;
+  lastName: <span class="hljs-built_in">string</span>;
+  email: <span class="hljs-built_in">string</span>;
+  bio: <span class="hljs-built_in">string</span>;
+  profession: <span class="hljs-built_in">string</span>;
+  location: <span class="hljs-built_in">string</span>;
+  active: <span class="hljs-built_in">boolean</span>;
+  contactLinks: ContactLink[];
+  projectCount: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> ContactLink {
+  id: <span class="hljs-built_in">number</span>;
+  name: <span class="hljs-built_in">string</span>;
+  url: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> PersonStatus {
+  id: <span class="hljs-built_in">number</span>;
+  firstName: <span class="hljs-built_in">string</span>;
+  lastName: <span class="hljs-built_in">string</span>;
+  active: <span class="hljs-built_in">boolean</span>;
+  message: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> PersonProjects {
+  personId: <span class="hljs-built_in">number</span>;
+  personName: <span class="hljs-built_in">string</span>;
+  active: <span class="hljs-built_in">boolean</span>;
+  filterApplied: <span class="hljs-built_in">boolean</span>;
+  minCost: <span class="hljs-built_in">number</span> | <span class="hljs-literal">null</span>;
+  projectCount: <span class="hljs-built_in">number</span>;
+  projects: Project[];
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> Project {
+  id: <span class="hljs-built_in">number</span>;
+  name: <span class="hljs-built_in">string</span>;
+  description: <span class="hljs-built_in">string</span>;
+  technologies: <span class="hljs-built_in">string</span>;
+  status: <span class="hljs-built_in">string</span>;
+  cost: <span class="hljs-built_in">number</span>;
+  startDate: <span class="hljs-built_in">string</span>;
+  endDate: <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>;
+  projectLink: ProjectLink;
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> ProjectLink {
+  name: <span class="hljs-built_in">string</span>;
+  url: <span class="hljs-built_in">string</span>;
+}
+</div></code></pre>
+  <hr>
+  <hr>
+  <h3 id="28-componentes-sugeridos">2.8 Componentes Sugeridos</h3>
+  <p><strong>Estructura de componentes:</strong></p>
+  <pre class="hljs"><code><div>src/app/
+├── components/
+│   ├── home/
+│   │   └── home.component.ts
+│   ├── projects/
+│   │   └── projects.component.ts
+│   ├── person-card/           (opcional: componente reutilizable)
+│   │   └── person-card.component.ts
+│   └── project-card/          (opcional: componente reutilizable)
+│       └── project-card.component.ts
+├── services/
+│   └── person.service.ts
+├── models/
+│   └── person.models.ts
+└── app.routes.ts
+</div></code></pre>
+  <hr>
+  <h2 id="parte-3-criterios-de-evaluaci%C3%B3n">PARTE 3: CRITERIOS DE EVALUACIÓN</h2>
+  <h3 id="31-backend-60">3.1 Backend (60%)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Criterio</th>
+        <th>Puntos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ENDPOINT 1 – GET /api/persons (con filtro activeOnly)</td>
+        <td>6.0</td>
+      </tr>
+      <tr>
+        <td>ENDPOINT 2 – PATCH /api/persons/{id}/toggle-active</td>
+        <td>6.0</td>
+      </tr>
+      <tr>
+        <td>ENDPOINT 3 – GET /api/persons/{id}</td>
+        <td>6.0</td>
+      </tr>
+      <tr>
+        <td>ENDPOINT 4 – GET /api/persons/{id}/projects (con filtro minCost)</td>
+        <td>6.5</td>
+      </tr>
+      <tr>
+        <td>Relaciones JPA correctas (OneToMany, ManyToOne, OneToOne)</td>
+        <td>2.0</td>
+      </tr>
+      <tr>
+        <td>Estructura del proyecto y arquitectura</td>
+        <td>4.0</td>
+      </tr>
+      <tr>
+        <td><strong>SUBTOTAL BACKEND</strong></td>
+        <td><strong>30.0</strong></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="32-frontend-40">3.2 Frontend (40%)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Criterio</th>
+        <th>Puntos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Página Home: Listado de personas con cards</td>
+        <td>6.0</td>
+      </tr>
+      <tr>
+        <td>Página Home: Filtro activos y botón activar/desactivar</td>
+        <td>2.0</td>
+      </tr>
+      <tr>
+        <td>Página Home: Íconos de redes sociales y navegación</td>
+        <td>1.5</td>
+      </tr>
+      <tr>
+        <td>Página Proyectos: Información de persona y listado de proyectos</td>
+        <td>6.0</td>
+      </tr>
+      <tr>
+        <td>Página Proyectos: Filtro por costo</td>
+        <td>2.0</td>
+      </tr>
+      <tr>
+        <td>Manejo de casos especiales (sin proyectos, persona inexistente)</td>
+        <td>2.0</td>
+      </tr>
+      <tr>
+        <td>Validaciones de rutas (/proyectos sin ID, ID inválido)</td>
+        <td>1.5</td>
+      </tr>
+      <tr>
+        <td><strong>SUBTOTAL FRONTEND</strong></td>
+        <td><strong>20.0</strong></td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <h2 id="parte-4-notas-importantes">PARTE 4: NOTAS IMPORTANTES</h2>
+  <p><strong>Backend:</strong></p>
+  <ul>
+    <li>Cada endpoint debe cumplir EXACTAMENTE con la estructura del DTO</li>
+    <li>Relaciones JPA deben estar correctamente configuradas</li>
+    <li>Códigos HTTP deben ser los especificados</li>
+    <li>Validaciones de negocio deben estar implementadas</li>
+  </ul>
+  <p><strong>Frontend:</strong></p>
+  <ul>
+    <li>Las interfaces TypeScript deben coincidir con los DTOs del backend</li>
+    <li>Manejo de errores debe ser robusto (404, errores de red, etc.)</li>
+    <li>La navegación debe funcionar correctamente</li>
+    <li>Los filtros deben llamar correctamente a los endpoints</li>
+  </ul>
+  <p><strong>Datos de prueba:</strong></p>
+  <ul>
+    <li>10 personas: 8 activas, 2 inactivas</li>
+    <li>Persona #2 NO debe tener proyectos (caso especial a probar)</li>
+    <li>Cada persona: 2-4 enlaces de contacto</li>
+    <li>Cada persona (excepto #2): 5-10 proyectos</li>
+    <li>Enlaces deben incluir GitHub, LinkedIn y otros</li>
+  </ul>
+  <p><strong>Penalización total (0 puntos) si:</strong></p>
+  <ul>
+    <li>Backend y Frontend no se comunican</li>
+    <li>Relaciones JPA incorrectas</li>
+    <li>Endpoints no funcionan según especificación</li>
+    <li>Páginas no cargan o tienen errores críticos</li>
+  </ul>
+  <hr>
+  <h2 id="parte-5-entrega">PARTE 5: ENTREGA</h2>
+  <p><strong>Backend:</strong></p>
+  <ul>
+    <li>Repositorio Git con el proyecto Spring Boot</li>
+    <li>Código debe compilar y ejecutar correctamente</li>
+    <li>Archivos SQL deben estar en <code>src/main/resources/</code></li>
+  </ul>
+  <p><strong>Frontend:</strong></p>
+  <ul>
+    <li>Repositorio Git con el proyecto Angular</li>
+    <li>Código debe compilar (<code>ng build</code>) sin errores</li>
+    <li>Aplicación debe ejecutarse correctamente (<code>ng serve</code>)</li>
+  </ul>
+  <p><strong>Formato de entrega:</strong></p>
+  <ul>
+    <li>Enlace(s) al repositorio remoto (GitHub/GitLab)</li>
+    <li>Subir al AVAC dentro del tiempo asignado</li>
+    <li>Tiempo límite: Hora exacta del último commit</li>
+    <li>Commits posteriores: NO evaluados</li>
+    <li>Repositorio vacío o inaccesible: Calificación 0</li>
+  </ul>
+  <hr>
+
+</body>
+
+</html>
